@@ -1,0 +1,48 @@
+{
+  "name": "recustom",
+  "version": "0.0.1",
+  "description": "An agnostic approach to bind your styles to your react components.",
+  "keywords": [
+    "react",
+    "style",
+    "agnostic",
+    "compose",
+    "custom",
+    "properties"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "start": "tsc -w",
+    "build": "tsc",
+    "prepublish": "npm run build",
+    "test": "npx jest"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "dashify": "^1.0.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.4",
+    "@types/dashify": "^1.0.0",
+    "@types/react": "^16.4.6",
+    "@types/react-dom": "^16.0.6",
+    "enzyme": "^3.3.0",
+    "ts-jest": "^23.0.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrgautier/recustom.git"
+  },
+  "author": "Adrien Gautier",
+  "bugs": {
+    "url": "https://github.com/adrgautier/recustom/issues"
+  },
+  "homepage": "https://github.com/adrgautier/recustom#readme"
+}

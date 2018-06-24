@@ -1,0 +1,18 @@
+.Section {
+    padding: 20px;
+    background-color: var(--background-color);
+    font-weight: var(--font-weight);
+}
+
+.Section.active {
+    background-color: var(--primary-color);
+    text-align: var(--text-align);
+}
+
+.AlternativeSection {
+    border: 6px solid black;
+}
+
+.AlternativeSection.focused {
+    background-color: var(--secondary-color);
+}
