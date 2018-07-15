@@ -1,0 +1,1 @@
+export const shadow = color => `0 2px 4px ${color}`;

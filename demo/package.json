@@ -6,9 +6,9 @@
     "classnames": "^2.2.6",
     "dashify": "^1.0.0",
     "react": "^16.4.1",
-    "react-custom-properties": "^1.2.0",
     "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "sanitize.css": "^6.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

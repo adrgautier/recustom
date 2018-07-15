@@ -1,0 +1,27 @@
+.Bubble {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+
+    display: block;
+    height: 100%;
+    width: 100%;
+    
+    padding: 50px;
+
+    transform: scale(0, 1);
+    transform-origin: left;
+
+    border-radius: 100%;
+
+    transition: transform .4s, opacity .2s;
+
+    opacity: 0;
+    box-sizing: content-box;
+}
+
+
+.Bubble.expanded {
+    opacity: 1;
+    transform: scale(1, 1);
+}

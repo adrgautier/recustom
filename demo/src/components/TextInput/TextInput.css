@@ -1,0 +1,23 @@
+.TextInput {
+    position: relative;
+    display: inline-block;
+    margin-bottom: .5em;
+    width: 100%;
+    padding-left: .5em;
+    line-height: 1.75em;
+
+    border-radius: 4px;
+    background-color: var(--background-color);
+
+    color: var(--color);
+
+    font-size: 24px;
+    font-weight: 200;
+    vertical-align: middle;
+
+    
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+
+    transition: box-shadow .4s;
+}
