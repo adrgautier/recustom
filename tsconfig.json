@@ -5,7 +5,7 @@
 		"module": "commonjs",
 		"noImplicitAny": false,
 		"removeComments": true,
-        "declaration": false,
+        "declaration": true,
 		"sourceMap": true,
 		"jsx": "react"
 	},
@@ -14,8 +14,14 @@
 		"./src/**/*.ts"
 	],
 	"exclude": [
-        "node_modules",
-        "./src/**/__tests__/**/*.ts",
-        "./src/**/__tests__/**/*.tsx",
+		"coverage",
+		"demo",
+		"docs",
+		"lib",
+		"node_modules",
+		"./src/**/*.test.tsx",
+		"./src/**/*.test.ts",
+		"./src/**/*.spec.tsx",
+		"./src/**/*.spec.ts"
 	]
 }

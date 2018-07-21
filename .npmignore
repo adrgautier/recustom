@@ -1,5 +1,7 @@
 ### VisualStudioCode ###
 .vscode/*
 
-### Demo ###
+### Module extras ###
+coverage/
 demo/
+docs/

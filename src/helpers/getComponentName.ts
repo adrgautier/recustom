@@ -1,1 +1,1 @@
-export default Component => (Component.displayName || Component.name);
+export default Component => Component.displayName || Component.name;

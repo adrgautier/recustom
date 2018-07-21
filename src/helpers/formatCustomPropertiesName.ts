@@ -1,5 +1,3 @@
-import * as dashify from 'dashify';
+import { kebabCase } from "lodash";
 
-export default (name: string) :string => (
-    `--${dashify(name)}`
-);
+export default (name: string): string => `--${kebabCase(name)}`;

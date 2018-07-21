@@ -1,0 +1,9 @@
+{
+    "extends": ["tslint:latest", "tslint-react"],
+    "exclude": [
+        "demo",
+        "docs",
+        "lib",
+        "node_modules"
+	]
+}

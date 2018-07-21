@@ -1,6 +1,6 @@
 {
   "name": "recustom",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An agnostic approach to bind your styles to your react components.",
   "keywords": [
     "react",
@@ -15,23 +15,50 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "start": "tsc -w",
-    "build": "tsc",
-    "prepublish": "npm run build",
-    "test": "npx jest"
+    "build": "rm lib/ -R && tsc",
+    "prepublishOnly": "npm run build",
+    "test": "npx jest",
+    "lint": "tslint",
+    "dry-prettier": "prettier **/*.{ts,tsx,js,jsx,md}",
+    "prettier": "npm run dry-prettier -- --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "dashify": "^1.0.0",
+    "lodash": "^4.17.10",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react-dom": "^16.4.1",
+    "recompose": "^0.27.1"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.4",
-    "@types/dashify": "^1.0.0",
+    "@types/jest": "^23.3.0",
+    "@types/lodash": "^4.14.112",
     "@types/react": "^16.4.6",
     "@types/react-dom": "^16.0.6",
+    "@types/recompose": "^0.26.1",
     "enzyme": "^3.3.0",
-    "ts-jest": "^23.0.0"
+    "husky": "^1.0.0-rc.13",
+    "lint-staged": "^7.2.0",
+    "ts-jest": "^23.0.0",
+    "typescript": "^2.9.2"
+  },
+  "peerDependencies": {
+    "typescript": "^2.9.0",
+    "tslint": "^5.11.0",
+    "tslint-react": "^3.6.0",
+    "prettier": "^1.13.7",
+    "jest": "^23.4.1"
   },
   "directories": {
     "lib": "lib"

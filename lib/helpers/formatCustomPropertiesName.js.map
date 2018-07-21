@@ -1,1 +1,1 @@
-{"version":3,"file":"formatCustomPropertiesName.js","sourceRoot":"","sources":["../../src/helpers/formatCustomPropertiesName.ts"],"names":[],"mappings":";;AAAA,iCAAmC;AAEnC,mBAAe,UAAC,IAAY,IAAa,OAAA,CACrC,OAAK,OAAO,CAAC,IAAI,CAAG,CACvB,EAFwC,CAExC,EAAC"}
+{"version":3,"file":"formatCustomPropertiesName.js","sourceRoot":"","sources":["../../src/helpers/formatCustomPropertiesName.ts"],"names":[],"mappings":";;AAAA,iCAAmC;AAEnC,mBAAe,UAAC,IAAY,IAAa,OAAA,OAAK,kBAAS,CAAC,IAAI,CAAG,EAAtB,CAAsB,EAAC"}

@@ -1,13 +1,13 @@
 {
   "name": "recustom-demo",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
-    "dashify": "^1.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
+    "recustom": "0.0.1",
     "sanitize.css": "^6.0.0"
   },
   "scripts": {

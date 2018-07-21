@@ -1,28 +1,27 @@
-# recustom
+# Recustom
+
+[![written in: typescript](https://img.shields.io/badge/written%20in-typescript-0B72C2.svg?style=flat-square)](https://github.com/Microsoft/TypeScript)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 Yet another way to handle styles in React.
 
 ## How to use
 
-recustom is an "HOC factory" which helps mapping a component props and state to CSS custom properties and classes. It is inspired by the [react-redux](https://github.com/reduxjs/react-redux) `connect` API.
+Recustom is an "HOC factory" which helps mapping a component props and state to CSS custom properties and classes. It is inspired by the [react-redux](https://github.com/reduxjs/react-redux) `connect` API.
 
 ```jsx
-import custom from 'recustom';
+import custom from "recustom";
 
 // will be computed as custom properties
 const mapCustomProperties = (props, state) => ({
-    color: props.important ? 'red': 'black',
-    textAlign: props.alignment 					// computed as --text-align
+  color: props.important ? "red" : "black",
+  textAlign: props.alignment // computed as --text-align
 });
 
 // will be computed as state classes
-const mapStateClasses = (props, { active }) => 
-({ active });
+const mapStateClasses = (props, { active }) => ({ active });
 
-export default custom(
-  mapCustomProperties,
-  mapStateClasses
-)(Section);
+export default custom(mapCustomProperties, mapStateClasses)(Section);
 ```
 
 Your wrapped component must receive in its props the className and the style.
@@ -30,15 +29,17 @@ Your wrapped component must receive in its props the className and the style.
 ```jsx
 // wrapped component
 class Section extends PureComponent {
-    render() {
-        const { className, style, bindState } = this.props;
+  render() {
+    const { className, style, bindState } = this.props;
 
-        bindState(this.state);  // allow the hoc to map state to custom properties and classes
+    bindState(this.state); // allow the hoc to map state to custom properties and classes
 
-        return (<div className={className} style={style}>
-            <div className="subelement"></div>
-        </div>);
-    }
+    return (
+      <div className={className} style={style}>
+        <div className="subelement" />
+      </div>
+    );
+  }
 }
 ```
 
@@ -46,33 +47,29 @@ Your are now able to write powerful vanilla CSS :
 
 ```css
 .Section {
-  	padding: 20px;
-  	color: var(--color);
- 	text-align: var(--text-align);
-}
-    
-/* a state */
-.Section.active {
-    font-weight: bold;
-}
-  
-/* a sub element */
-.Section .subelement {
-    ...
+  padding: 20px;
+  color: var(--color);
+  text-align: var(--text-align);
 }
 
+/* a state */
+.Section.active {
+  font-weight: bold;
+}
+
+/* a sub element */
+.Section .subelement {
+  ...;
+}
 ```
+
 The `.Section` is generated from your component `displayName`. You can however force any class name by passing a string as the first argument.
 
 ```js
-export default custom(
-  'NotASection',
-  mapPropsToCustomProperties,
-  mapStateToClasses
-)(Section);
+export default custom("NotASection", mapCustomProperties, mapStateClasses)(
+  Section
+);
 ```
-
-
 
 ## Motivations
 
@@ -84,7 +81,7 @@ We can leverage props in three different ways :
 
   ```js
   const Section = styled.section`
-  	text-align: ${props => props.alignment}; // i.e. alignment = 'left'
+    text-align: ${props => props.alignment}; // i.e. alignment = 'left'
   `;
   ```
 
@@ -92,7 +89,7 @@ We can leverage props in three different ways :
 
   ```js
   const Section = styled.section`
-  	color: ${props => props.important ? 'red': 'inherit'};
+    color: ${props => (props.important ? "red" : "inherit")};
   `;
   ```
 
@@ -100,14 +97,14 @@ We can leverage props in three different ways :
 
   ```js
   const Section = styled.section`
-      color: grey;
-      font-weight: 300;
-      ${
-          props => props.active && css`
-              color: black;
-              font-weight: 700;
-          `
-      }
+    color: grey;
+    font-weight: 300;
+    ${props =>
+      props.active &&
+      css`
+        color: black;
+        font-weight: 700;
+      `};
   `;
   ```
 
@@ -127,20 +124,20 @@ But how can we translate component's props into CSS custom properties ?
 [This approach](https://github.com/danbahrami/react-custom-properties) by Dan Bahrami is really interesting. It allows us to define custom properties locally in the following way :
 
 ```jsx
-<CustomProperties properties={{ '--text-align': 'left' }}>
-    <section className="Section">
-    	this will be aligned left
-    </section>
+<CustomProperties properties={{ "--text-align": "left" }}>
+  <section className="Section">this will be aligned left</section>
 </CustomProperties>
 ```
 
-However these declarative approach may lead to some unnecessary complexity on the render function. Thus I decided to rely on his work to build an HOC approach.
+However these declarative approach may lead to some unnecessary complexity on the render function. Thus I decided to take the HOC approach.
 
 ```js
 custom(
-	({ alignment, important }) => 
-	({ textAlign: alignment, color: important ? 'red': 'inherit' }),
-	mapStateToClasses
+  ({ alignment, important }) => ({
+    textAlign: alignment,
+    color: important ? "red" : "inherit"
+  }),
+  mapStateClasses
 )(Section);
 ```
 
@@ -151,9 +148,8 @@ It allows to easily map props received by our components to CSS custom propertie
 The last use-case is a bit different. In fact we cannot rely on CSS custom properties anymore. However we can rely on the most old school way to deal with dynamism with CSS : "state classes". It is a common way (still used in Bootstrap v4) to handle how an element change its display throughout interactions. And this is exactly what styled-components do in background.
 
 ```js
-
 mapStateClasses({ active }) {
-    return { active }; // return anything 'classnames' npm module can handle 
+    return { active }; // return anything 'classnames' npm module can handle
 }
 
 export default custom(
@@ -171,7 +167,7 @@ It is possible to extend an already stylized component using the same HOC, the e
 ```js
 import Section from './Section';
 
-mapStateToClasses(state) {
+mapStateClasses(state) {
     return {
         active: false // overide the inherited behavior
     }
@@ -187,7 +183,3 @@ export default custom(
 You may have noticed our first argument which is mandatory to avoid className collision. If not provided, the className will fallback to the displayName of the wrapped component (in this case Section).
 
 The provided mappers allows us to override the inherited behavior. Think that the response of the upper mapper is merged with the inherited mapper. That mean if you want to disable the `active` "state class", you just need to return false for this key.
-
-## Demo
-
-To run the demo, you need to create a symlink targeting the `lib` directory from `demo/node_modules/recustom`.
