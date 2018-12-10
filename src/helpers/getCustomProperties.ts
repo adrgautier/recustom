@@ -1,4 +1,4 @@
-import formatName from "./formatCustomPropertiesName";
+import formatCustomProperties from "../utils/formatCustomProperties";
 import { Mapper } from "../types";
 import { ComponentState, Props } from "react";
 
@@ -15,11 +15,5 @@ export default (mapper: Mapper = {}, props: any, state: ComponentState) => {
     }
   }
 
-  return Object.keys(customProperties).reduce(
-    (properties: Object, propertyName: string): Object => ({
-      ...properties,
-      [formatName(propertyName)]: customProperties[propertyName]
-    }),
-    {}
-  );
+  return formatCustomProperties(customProperties);
 };
