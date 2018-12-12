@@ -1,12 +1,16 @@
-import { createFactory } from "react";
+import React, { createFactory } from "react";
 import * as classNames from "classnames";
+import getDisplayName from "recompose/getDisplayName";
 import setDisplayName from "recompose/setDisplayName";
 import wrapDisplayName from "recompose/wrapDisplayName";
 
-const mapPropsToClassName = propsToClassNamesMapper => BaseComponent => {
+export default propsToClassNamesMapper => BaseComponent => {
   const factory = createFactory(BaseComponent);
   const classNameFactory = ({ className: ownClassName, ...props }) =>
-    classNames(ownClassName, propsToClassNamesMapper(props));
+    classNames(
+      ownClassName,
+      propsToClassNamesMapper(props, getDisplayName(BaseComponent))
+    );
   const MapProps = props =>
     factory({
       ...props,
@@ -19,5 +23,3 @@ const mapPropsToClassName = propsToClassNamesMapper => BaseComponent => {
   }
   return MapProps;
 };
-
-export default mapPropsToClassName;

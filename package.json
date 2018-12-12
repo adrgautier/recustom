@@ -1,6 +1,6 @@
 {
   "name": "recustom",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "description": "An agnostic approach to bind your styles to your react components.",
   "keywords": [
     "react",

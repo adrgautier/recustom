@@ -1,16 +1,16 @@
 {
   "name": "recustom-demo",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
-    "recustom": "0.0.1",
     "sanitize.css": "^6.0.0"
   },
   "scripts": {
+    "init": "rm ./node_modules/recustom -Rf && mkdir \"./node_modules/recustom\" && echo module.exports = require('../../../lib/'); > ./node_modules/recustom/index.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

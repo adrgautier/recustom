@@ -1,10 +1,9 @@
-import { createFactory } from "react";
-import * as classNames from "classnames";
+import React, { createFactory } from "react";
 import setDisplayName from "recompose/setDisplayName";
 import wrapDisplayName from "recompose/wrapDisplayName";
 import formatCustomProperties from "./utils/formatCustomProperties";
 
-const mapPropsToCustomProperties = propsToCustomPropertiesMapper => BaseComponent => {
+export default propsToCustomPropertiesMapper => BaseComponent => {
   const factory = createFactory(BaseComponent);
   const styleFactory = ({ style: ownStyle, ...props }) => ({
     ...ownStyle,
@@ -22,5 +21,3 @@ const mapPropsToCustomProperties = propsToCustomPropertiesMapper => BaseComponen
   }
   return MapProps;
 };
-
-export default mapPropsToCustomProperties;

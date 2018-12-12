@@ -1,6 +1,7 @@
 import './TextInput.css';
 import React, { PureComponent } from "react";
-import custom from 'recustom';
+import { compose, withState } from 'recompose';
+import { mapPropsToClassName, mapPropsToCustomProperties} from 'recustom';
 
 import Bubble from './components/Bubble';
 import Input from './components/Input';
@@ -9,23 +10,19 @@ import { colors, shapes } from '../../themes';
 
 class TextInput extends PureComponent {
 
-    state = { focused: false };
-
     handleFocus = () => {
-        this.setState({ focused: true });
+        const { setFocused } = this.props;
+        setFocused(true);
     }
 
     handleBlur = () => {
-        this.setState({ focused: false });
+        const { setFocused } = this.props;
+        setFocused(false);
     }
 
     render() {
         const { handleFocus, handleBlur } = this;
-        const { className, style, bindState = () => {}, placeholder, name, value, error, type, onChange: handleChange, ...props } = this.props;
-        const { focused } = this.state;
-
-        // lift up "focused" state
-        bindState(this.state);
+        const { className, style, placeholder, name, value, error, focused, type, onChange: handleChange } = this.props;
 
         return (<label 
             className={className}
@@ -51,14 +48,21 @@ class TextInput extends PureComponent {
     }
 }
 
-export default custom(
-    ({ value, error}, {focused}) => ({
-        color: colors.base04,
-        backgroundColor: colors.base06,
-        boxShadow: focused ? shapes.shadow( value ? error ? colors.red : colors.blue : colors.base06): 'none'
-    }),
-    ({disabled}) => ({
-        disabled
-    })
-)
-(TextInput);
+export default compose(
+    withState('focused', 'setFocused', false),
+    mapPropsToCustomProperties(
+        ({ value, error, focused}) => 
+        ({
+            color: colors.base04,
+            backgroundColor: colors.base06,
+            boxShadow: focused ? shapes.shadow( value ? error ? colors.red : colors.blue : colors.base06): 'none'
+        })
+    ),
+    mapPropsToClassName(
+        ({disabled}, displayName) => 
+        ({
+            [displayName]: true,
+            disabled
+        })
+    )
+) (TextInput);
